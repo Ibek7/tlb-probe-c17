@@ -1,0 +1,13 @@
+tlb
+.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dylib
+*.egg-info/
+dist/
+build/
+.DS_Store
