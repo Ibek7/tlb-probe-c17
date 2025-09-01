@@ -66,6 +66,20 @@ The raw results (excerpt from `results.txt`):
 - There is a notable jump between 8 pages and 16 pages (avg per-access increases from ~0.9 ns to ~9.4 ns), indicating a small first-level TLB capacity around 8 entries.
 - After 16 pages times settle around 11–15 ns per access, with no clear second large jump in the collected points up to 8192 pages. On some machines you may see another jump when exceeding a second-level TLB.
 
+### Automated breakpoint detection
+
+I ran `detect_breaks.py` on `results.txt`. Output:
+
+```
+Detected breakpoints:
+	Between 8 and 16 pages: avg_ns 0.900 -> 9.412 (ratio 10.46, delta 8.512 ns)
+	Between 16 and 32 pages: avg_ns 9.412 -> 15.341 (ratio 1.63, delta 5.929 ns)
+
+Inferred TLB sizes (approx): 8, 16
+```
+
+The detector reports a strong jump at 8->16 pages and a secondary increase at 16->32 pages; inferred TLB sizes (approx) are 8 and 16 pages respectively.
+
 ## Collaboration statement
 - I completed this work independently. I used system documentation and library/manual pages to choose APIs (`clock_gettime`, `sched_setaffinity`, `thread_policy_set`).
 
